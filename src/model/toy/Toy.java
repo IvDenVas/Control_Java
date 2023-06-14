@@ -4,7 +4,6 @@ public class Toy {
     private String name;
     private int count;
     private int weight;
-
     public Toy(int id, String name, int count, int weight) {
         this.id = id;
         this.name = name;
@@ -43,4 +42,10 @@ public class Toy {
     public void setWeight(int weight) {
         this.weight = weight;
     }
+
+    @Override
+    public String toString() {
+        return  "ID = " + id + " Name = " + name + " Количество = " + count + " Weight = " + weight;
+    }
+
 }
