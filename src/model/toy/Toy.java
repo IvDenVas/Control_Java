@@ -1,4 +1,7 @@
 package model.toy;
+
+import java.util.Objects;
+
 public class Toy {
     private int id;
     private String name;
@@ -35,7 +38,7 @@ public class Toy {
         this.name = name;
     }
 
-    public void setCount(int count) {
+    public void setCount(int i) {
         this.count = count;
     }
 
@@ -45,7 +48,18 @@ public class Toy {
 
     @Override
     public String toString() {
-        return  "ID = " + id + " Name = " + name + " Количество = " + count + " Weight = " + weight;
+        return "ID = " + id + ", Name = " + name + ", Количество = " + count + ", Weight = " + weight;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Toy toy)) return false;
+        return getId() == toy.getId() && getCount() == toy.getCount() && getWeight() == toy.getWeight() && Objects.equals(getName(), toy.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getCount(), getWeight());
+    }
 }
