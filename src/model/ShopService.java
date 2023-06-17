@@ -14,11 +14,8 @@ public class ShopService extends Data {
         this.shop = shop;
     }
 
-    public void saveAllToys(){
-        for (var i : shop) {
-            wr.write(i, "AllToys.txt");
-        }
-//        wr.write(shop.toString(), "AllToys.txt");
+    public void saveToysFromFile(String i){
+        wr.write(i, "File.txt");
     }
 
     @Override
@@ -45,21 +42,15 @@ public class ShopService extends Data {
         return res;
     }
 
-    public List getPrizeToys(int weight) {
-        List<Toy> res = new ArrayList<>();
-        List temp = new ArrayList<>();
-        for (Toy i : getListPrizeToys(weight)) {
-            temp.add(i.getId());
-        }
+    public List<Toy> raffle(List<Toy> lst) {
         Random random = new Random();
-        int indexTemp = random.nextInt(getListPrizeToys(weight).size());
-        int idRandomToy = (int) temp.get(indexTemp);
-        for (var i : getListPrizeToys(weight)) {
-            if (i.getId() == idRandomToy) {
-                res.add(i);
-            }
-        }
-        return res;
+        int indexTemp = random.nextInt(lst.size());
+        System.out.println( "Индекс рандомной игрушки: " + indexTemp); // вывод индекс списка призовых игрушек
+        // для проверки!!!
+        saveToysFromFile(lst.get(indexTemp).print());
+        lst.add(indexTemp + 1, new Toy(lst.get(indexTemp).getId(), lst.get(indexTemp).getName(),
+                lst.get(indexTemp).getCount() - 1, lst.get(indexTemp).getWeight()));
+        lst.remove(indexTemp);
+        return lst;
     }
-
 }

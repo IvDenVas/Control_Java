@@ -51,15 +51,14 @@ public class Toy {
         return "ID = " + id + ", Name = " + name + ", Количество = " + count + ", Weight = " + weight;
     }
 
+    public String print() {
+        return "ID = " + id + ", Name = " + name + ", Weight = " + weight;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Toy toy)) return false;
         return getId() == toy.getId() && getCount() == toy.getCount() && getWeight() == toy.getWeight() && Objects.equals(getName(), toy.getName());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getName(), getCount(), getWeight());
     }
 }

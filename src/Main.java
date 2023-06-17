@@ -10,10 +10,10 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
         Toy toy1 = new Toy(1, "Конструктор", 3, 10);// создание игрушек
-        Toy toy2 = new Toy(2, "Робот", 5, 5);
+        Toy toy2 = new Toy(2, "Робот", 7, 5);
         Toy toy3 = new Toy(3, "Кукла", 10, 60);
 
-        Shop shop = new Shop();
+        Shop<Toy> shop = new Shop();
         ShopService srv = new ShopService(shop);
 
         srv.addToy(toy1);
@@ -23,17 +23,21 @@ public class Main {
 
 
         srv.changeWeight(toy1, 18);// метод изменения веса
+        System.out.println("Весь асортимент магазина: ");
         System.out.println(srv);//вывод всех игрушек магазина
-        srv.saveAllToys();// метод записи в файл всех игрушек
+//        srv.saveAllToys();// метод записи в файл всех игрушек
 
-        List listPrizeToys = srv.getListPrizeToys(20);// метод получения призовых игрушек с весом менее
+        List<Toy> listPrizeToys = srv.getListPrizeToys(20);// метод получения призовых игрушек с весом менее
         // введеного значения (20)
+        System.out.println("Список призовых игрушек:");
         System.out.println(listPrizeToys);// вывод призовых игрушек
-        List res =  srv.getPrizeToys(20);
-        System.out.println(res);
+
+        listPrizeToys = srv.raffle(listPrizeToys);// розыгриш + запись игрушки в файл
         System.out.println(listPrizeToys);
-
-
+        listPrizeToys = srv.raffle(listPrizeToys);// розыгриш + запись игрушки в файл
+        System.out.println(listPrizeToys);
+        listPrizeToys = srv.raffle(listPrizeToys);// розыгриш + запись игрушки в файл
+        System.out.println(listPrizeToys);
     }
 
 }

@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Shop<E extends Toy> implements Iterable<E> {
-    private List<E> shop;
+    private final List<E> shop;
 
     public Shop() {
         this.shop = new ArrayList<>();
